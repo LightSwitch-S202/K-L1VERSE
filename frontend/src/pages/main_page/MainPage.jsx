@@ -26,6 +26,8 @@ function MainPage() {
   const [userState] = useRecoilState(UserState);
   const { nickname } = userState;
   const { email } = userState;
+  const { userId } = userState;
+
 
   const navigate = useNavigate();
 
@@ -86,10 +88,12 @@ function MainPage() {
         userState.mainBadge === null ? "null" : "not null",
       );
 
-      getEventList((data)=> {
+      getEventList(userId,
+          (data)=> {
         setEvents(data)
         console.log(data)
-      }, (err)=>{
+      },
+          (err)=>{
         console.log(err)
       })
 

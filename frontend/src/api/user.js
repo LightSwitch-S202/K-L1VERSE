@@ -11,6 +11,6 @@ export function getUserDetail(success, fail) {
   axios.get(`/${gateway}/${url}/mypage`).then(success).catch(fail);
 }
 
-export function getEventList(success, fail) {
-  axios.get(`/${gateway}/${url}/event`).then(success).catch(fail);
+export function getEventList(userId, success, fail) {
+  axios.get(`/${gateway}/${url}/event/${userId}`).then(success).catch(fail);
 }
