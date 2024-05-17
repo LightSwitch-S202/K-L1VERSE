@@ -20,14 +20,13 @@ import EditNicknameModal from "../../components/mypage/EditNicknameModal";
 import Footer from "../../components/main/Footer";
 import Banner from "../../components/main/Banner";
 import authAxios from "../../api/authAxios";
-import {getEventList} from "../../api/user";
+import { getEventList } from "../../api/user";
 
 function MainPage() {
   const [userState] = useRecoilState(UserState);
   const { nickname } = userState;
   const { email } = userState;
   const { userId } = userState;
-
 
   const navigate = useNavigate();
 
@@ -88,22 +87,24 @@ function MainPage() {
         userState.mainBadge === null ? "null" : "not null",
       );
 
-      getEventList(userId,
-          (data)=> {
-        setEvents(data)
-        console.log(data)
-      },
-          (err)=>{
-        console.log(err)
-      })
+      getEventList(
+        userId,
+        (data) => {
+          setEvents(data);
+          console.log(data);
+        },
+        (err) => {
+          console.log(err);
+        },
+      );
 
       let lightswitch = LSClient.getInstance();
 
       lightswitch
         .init({
-          sdkKey: "0ca69b1cfd754a1fb78191c941c5c76e",
+          sdkKey: "bed9b6c269934b3f90633f14351be202",
           onFlagChanged: () => {},
-          endpoint: "https://lightswitch.kr",
+          endpoint: "https://dear103.store/lightswitch",
         })
         .then(() => {
           console.log(
@@ -121,7 +122,6 @@ function MainPage() {
 
       return () => ChannelIO("hideChannelButton");
     }
-
   }, []);
 
   useEffect(() => {
@@ -138,32 +138,32 @@ function MainPage() {
 
   return (
     <div>
-        <div>
-          <Notice />
-          <Banner />
-          {!flag && <Survey />}
-          <Category>
-            <Title>💬 커뮤니티</Title>
-            <AllBtn onClick={handleAllBtn}>전체보기</AllBtn>
-          </Category>
-          <Board />
-          <Category>
-            <Title>🏁 오늘의 경기</Title>
-            <AllBtn onClick={goMatchSchedule}>전체보기</AllBtn>
-          </Category>
-          <TodayMatch />
-          <Hotclip />
-          <Category>
-            <Title>🎯 노스트라다무스 랭킹</Title>
-          </Category>
-          <NostraContent>
-            경기 결과 예측에 성공하여 순위에 올라보세요!
-          </NostraContent>
-          <Nostradamus />
-          {flag && <Survey />}
-          <Footer />
-          {nickname === null && <EditNicknameModal type="signUp" />}
-        </div>
+      <div>
+        <Notice />
+        <Banner />
+        {!flag && <Survey />}
+        <Category>
+          <Title>💬 커뮤니티</Title>
+          <AllBtn onClick={handleAllBtn}>전체보기</AllBtn>
+        </Category>
+        <Board />
+        <Category>
+          <Title>🏁 오늘의 경기</Title>
+          <AllBtn onClick={goMatchSchedule}>전체보기</AllBtn>
+        </Category>
+        <TodayMatch />
+        <Hotclip />
+        <Category>
+          <Title>🎯 노스트라다무스 랭킹</Title>
+        </Category>
+        <NostraContent>
+          경기 결과 예측에 성공하여 순위에 올라보세요!
+        </NostraContent>
+        <Nostradamus />
+        {flag && <Survey />}
+        <Footer />
+        {nickname === null && <EditNicknameModal type="signUp" />}
+      </div>
     </div>
   );
 }

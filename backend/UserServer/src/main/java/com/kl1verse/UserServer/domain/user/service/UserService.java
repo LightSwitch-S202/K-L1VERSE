@@ -12,6 +12,7 @@ import com.lightswitch.impl.LightSwitch;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +22,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class UserService {
 
     private final UserRepository userRepository;
@@ -29,7 +31,7 @@ public class UserService {
 
 
     static {
-        lightSwitch.init("0ca69b1cfd754a1fb78191c941c5c76e", "https://lightswitch.kr");
+        lightSwitch.init("bed9b6c269934b3f90633f14351be202", "https://dear103.store/lightswitch");
     }
 
 
@@ -63,6 +65,7 @@ public class UserService {
         LSUser lsUser = new LSUser.Builder(userId)
             .build();
 
+        log.info("checkEvent");
         if (lightSwitch.getBooleanFlag("UserEvent", lsUser, false)) {
             CheckEventResDto checkEventResDto = CheckEventResDto.builder()
                 .name("하나은행 K리그 2024 특별 이벤트")
