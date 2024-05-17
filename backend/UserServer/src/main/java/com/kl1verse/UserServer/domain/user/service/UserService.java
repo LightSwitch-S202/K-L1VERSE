@@ -57,14 +57,10 @@ public class UserService {
         return user.getGoal() >= checkGoalResDto.getCompareGoal();
     }
 
-    public Object checkEvent(HttpServletRequest request) {
-        String requestToken = jwtUtil.resolveToken(request);
-        String email = jwtUtil.extractUserNameFromExpiredToken(requestToken);
-        String domain = jwtUtil.extractUserDomainFromExpiredToken(requestToken);
-
+    public List<CheckEventResDto> checkEvent(String userId) {
         List<CheckEventResDto> eventResDtos = new ArrayList<>();
 
-        LSUser lsUser = new LSUser.Builder(email)
+        LSUser lsUser = new LSUser.Builder(userId)
             .build();
 
         if (lightSwitch.getBooleanFlag("UserEvent", lsUser, false)) {

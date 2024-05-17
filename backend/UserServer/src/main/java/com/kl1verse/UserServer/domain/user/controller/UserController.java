@@ -8,6 +8,7 @@ import com.kl1verse.UserServer.domain.notification.dto.req.MessageReqDto;
 import com.kl1verse.UserServer.domain.notification.dto.req.MessageReqDto.NotificationType;
 import com.kl1verse.UserServer.domain.notification.dto.res.NotificationResDto;
 import com.kl1verse.UserServer.domain.notification.service.NotificationService;
+import com.kl1verse.UserServer.domain.user.dto.res.CheckEventResDto;
 import com.kl1verse.UserServer.domain.user.dto.res.CheckGoalResDto;
 import com.kl1verse.UserServer.domain.user.dto.res.MypageResponseDto;
 import com.kl1verse.UserServer.domain.user.dto.res.NicknameUpdateReqDto;
@@ -221,8 +222,8 @@ public class UserController {
         return ResponseEntity.ok().body(userService.checkGoal(checkGoalResDto));
     }
 
-    @GetMapping("/event")
-    public ResponseEntity<?> checkEvent(HttpServletRequest request) {
-        return ResponseEntity.ok(userService.checkEvent(request));
+    @GetMapping("/event/{userId}")
+    public ResponseEntity<List<CheckEventResDto>> checkEvent(@PathVariable String userId) {
+        return ResponseEntity.ok(userService.checkEvent(userId));
     }
 }
