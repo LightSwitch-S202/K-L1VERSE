@@ -19,6 +19,8 @@ import Survey from "../../components/main/Survey";
 import EditNicknameModal from "../../components/mypage/EditNicknameModal";
 import Footer from "../../components/main/Footer";
 import Banner from "../../components/main/Banner";
+import authAxios from "../../api/authAxios";
+import {getEventList} from "../../api/user";
 
 function MainPage() {
   const [userState] = useRecoilState(UserState);
@@ -67,6 +69,7 @@ function MainPage() {
   });
 
   const [flag, setFlag] = useState(true);
+  const [events, setEvents] = useState([]);
 
   useEffect(() => {
     if (!email) {
@@ -82,6 +85,13 @@ function MainPage() {
         "mainBadge:",
         userState.mainBadge === null ? "null" : "not null",
       );
+
+      getEventList((data)=> {
+        setEvents(data)
+        console.log(data)
+      }, (err)=>{
+        console.log(err)
+      })
 
       let lightswitch = LSClient.getInstance();
 
@@ -107,6 +117,7 @@ function MainPage() {
 
       return () => ChannelIO("hideChannelButton");
     }
+
   }, []);
 
   useEffect(() => {
@@ -123,7 +134,6 @@ function MainPage() {
 
   return (
     <div>
-      {email && (
         <div>
           <Notice />
           <Banner />
@@ -150,7 +160,6 @@ function MainPage() {
           <Footer />
           {nickname === null && <EditNicknameModal type="signUp" />}
         </div>
-      )}
     </div>
   );
 }
