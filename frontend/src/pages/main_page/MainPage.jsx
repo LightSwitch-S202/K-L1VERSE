@@ -143,7 +143,7 @@ function MainPage() {
             {events.map(event => (
                 <div key={event.name} style={{position: "relative"}}>
                   <img
-                      src={`../images/event_images/event${event.name}.png`}
+                      src={`/src/assets/event_images/event${event.name}.png`}
                       alt={event.description}
                       width={150}
                   />
