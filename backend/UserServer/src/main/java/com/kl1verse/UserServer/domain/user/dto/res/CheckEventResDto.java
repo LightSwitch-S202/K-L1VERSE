@@ -1,5 +1,7 @@
 package com.kl1verse.UserServer.domain.user.dto.res;
 
+import java.time.LocalDate;
+
 import lombok.Builder;
 import lombok.Getter;
 
@@ -8,6 +10,6 @@ import lombok.Getter;
 public class CheckEventResDto {
     String name;
     String description;
-    String start_date;
-    String end_date;
+    LocalDate start_date;
+    LocalDate end_date;
 }

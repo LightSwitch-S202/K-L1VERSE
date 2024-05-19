@@ -16,7 +16,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -62,32 +65,35 @@ public class UserService {
     public List<CheckEventResDto> checkEvent(String userId) {
         List<CheckEventResDto> eventResDtos = new ArrayList<>();
 
+        CheckEventResDto checkEventResDto = CheckEventResDto.builder()
+            .name("1")
+            .description("SSAFY 12기 모집")
+            .start_date(LocalDate.parse("2024-04-22"))
+            .end_date(LocalDate.parse("2024-05-07"))
+            .build();
+        CheckEventResDto checkEventResDto2 = CheckEventResDto.builder()
+            .name("2")
+            .description("LIGHT SWITCH 체험단")
+            .start_date(LocalDate.parse("2024-03-17"))
+            .end_date(LocalDate.parse("2024-06-30"))
+            .build();
+        CheckEventResDto checkEventResDto3 = CheckEventResDto.builder()
+            .name("3")
+            .description("맨스티어 티셔츠")
+            .start_date(LocalDate.parse("2024-02-28"))
+            .end_date(LocalDate.parse("2024-05-20"))
+            .build();
+        eventResDtos.add(checkEventResDto);
+        eventResDtos.add(checkEventResDto2);
+        eventResDtos.add(checkEventResDto3);
+
+        eventResDtos.sort(Comparator.comparing(CheckEventResDto::getStart_date));
+
         LSUser lsUser = new LSUser.Builder(userId)
             .build();
 
-        log.info("checkEvent");
         if (lightSwitch.getBooleanFlag("UserEvent", lsUser, false)) {
-            CheckEventResDto checkEventResDto = CheckEventResDto.builder()
-                .name("하나은행 K리그 2024 특별 이벤트")
-                .description("25개 구단 입장권 할인 및 2024 시즌 축덕카드 할인 이벤트")
-                .start_date("2024-01-01")
-                .end_date("2024-12-31")
-                .build();
-            CheckEventResDto checkEventResDto2 = CheckEventResDto.builder()
-                .name("GET THE BALL, OWN THE MOMENT")
-                .description("지금 k리그 경기 득점 공인구와 환희의 순간을 함께 소장하세요!")
-                .start_date("2024-01-01")
-                .end_date("2024-12-31")
-                .build();
-            CheckEventResDto checkEventResDto3 = CheckEventResDto.builder()
-                .name("2024 K 리그 판타지 오픈")
-                .description("점수 시스템 개편, 누적 랭킹과 보상 확대")
-                .start_date("2024-01-01")
-                .end_date("2024-12-31")
-                .build();
-            eventResDtos.add(checkEventResDto);
-            eventResDtos.add(checkEventResDto2);
-            eventResDtos.add(checkEventResDto3);
+            eventResDtos.sort(Comparator.comparing(CheckEventResDto::getEnd_date));
         }
 
         return eventResDtos;

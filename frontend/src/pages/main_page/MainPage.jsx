@@ -164,6 +164,7 @@ function MainPage() {
         <Footer />
         {nickname === null && <EditNicknameModal type="signUp" />}
       </div>
+
     </div>
   );
 }
