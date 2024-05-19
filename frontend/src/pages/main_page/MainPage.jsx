@@ -138,17 +138,19 @@ function MainPage() {
 
   return (
       <div>
-        <div style={{position: "relative", left: 650, top: 50, width: 0, height: 0}}>
-          {events.map(event => (
-              <div key={event.name} style={{position: "relative"}}>
-                <img
-                    src={`../images/event_images/event${event.name}.png`}
-                    alt={event.description}
-                    width={150}
-                />
-              </div>
-          ))}
-        </div>
+        {events.length > 0 && (
+          <div style={{position: "relative", left: 650, top: 50, width: 0, height: 0}}>
+            {events.map(event => (
+                <div key={event.name} style={{position: "relative"}}>
+                  <img
+                      src={`../images/event_images/event${event.name}.png`}
+                      alt={event.description}
+                      width={150}
+                  />
+                </div>
+            ))}
+          </div>
+        )}
         <div>
           <Notice/>
           <Banner/>
@@ -175,9 +177,7 @@ function MainPage() {
           <Footer/>
           {nickname === null && <EditNicknameModal type="signUp"/>}
         </div>
-
       </div>
-
   );
 }
 
