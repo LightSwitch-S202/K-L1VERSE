@@ -138,7 +138,7 @@ function MainPage() {
 
   return (
       <div>
-        {events.length > 0 && (
+        {events !== undefined && events.length > 0 && (
           <div style={{position: "relative", left: 650, top: 50, width: 0, height: 0}}>
             {events.map(event => (
                 <div key={event.name} style={{position: "relative"}}>
