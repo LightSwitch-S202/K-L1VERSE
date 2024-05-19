@@ -77,7 +77,7 @@ instance.interceptors.response.use(
           window.location.reload();
         }
       } else {
-        window.location.href = `/login`;
+          window.location.href = `${domainAndPort}/login`;
       }
     }
   },

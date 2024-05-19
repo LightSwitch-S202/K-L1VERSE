@@ -34,7 +34,7 @@ public class UserService {
 
 
     static {
-        lightSwitch.init("bed9b6c269934b3f90633f14351be202", "https://dear103.store/lightswitch");
+        lightSwitch.init("0ca69b1cfd754a1fb78191c941c5c76e", "https://lightswitch.kr");
     }
 
 
