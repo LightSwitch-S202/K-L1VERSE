@@ -92,7 +92,7 @@ public class UserService {
         LSUser lsUser = new LSUser.Builder(userId)
             .build();
 
-        if (lightSwitch.getBooleanFlag("UserEvent", lsUser, false)) {
+        if (lightSwitch.getBooleanFlag("Event 광고 플래그", lsUser, false)) {
             eventResDtos.sort(Comparator.comparing(CheckEventResDto::getEnd_date));
         }
 
