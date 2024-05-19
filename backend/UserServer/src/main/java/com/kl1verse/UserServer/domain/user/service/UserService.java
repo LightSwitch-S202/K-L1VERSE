@@ -93,6 +93,7 @@ public class UserService {
             .build();
 
         if (lightSwitch.getBooleanFlag("Event 광고 플래그", lsUser, false)) {
+            log.info(" 해당 유저는 TRUE " + userId);
             eventResDtos.sort(Comparator.comparing(CheckEventResDto::getEnd_date));
         }
 
