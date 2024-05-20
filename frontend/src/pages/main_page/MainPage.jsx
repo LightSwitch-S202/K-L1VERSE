@@ -137,47 +137,55 @@ function MainPage() {
   };
 
   return (
-      <div>
-        {events !== undefined && events.length > 0 && (
-          <div style={{position: "relative", left: 650, top: 50, width: 0, height: 0}}>
-            {events.map(event => (
-                <div key={event.name} style={{position: "relative"}}>
-                  <img
-                      src={`/src/assets/event_images/event${event.name}.png`}
-                      alt={event.description}
-                      width={150}
-                  />
-                </div>
-            ))}
-          </div>
-        )}
-        <div>
-          <Notice/>
-          <Banner/>
-          {!flag && <Survey/>}
-          <Category>
-            <Title>💬 커뮤니티</Title>
-            <AllBtn onClick={handleAllBtn}>전체보기</AllBtn>
-          </Category>
-          <Board/>
-          <Category>
-            <Title>🏁 오늘의 경기</Title>
-            <AllBtn onClick={goMatchSchedule}>전체보기</AllBtn>
-          </Category>
-          <TodayMatch/>
-          <Hotclip/>
-          <Category>
-            <Title>🎯 노스트라다무스 랭킹</Title>
-          </Category>
-          <NostraContent>
-            경기 결과 예측에 성공하여 순위에 올라보세요!
-          </NostraContent>
-          <Nostradamus/>
-          {flag && <Survey/>}
-          <Footer/>
-          {nickname === null && <EditNicknameModal type="signUp"/>}
+    <div>
+      {events !== undefined && events.length > 0 && (
+        <div
+          style={{
+            position: "relative",
+            left: 650,
+            top: 50,
+            width: 0,
+            height: 0,
+          }}
+        >
+          {events.map((event) => (
+            <div key={event.name} style={{ position: "relative" }}>
+              <img
+                src={`/event_images/event${event.name}.png`}
+                alt={event.description}
+                width={150}
+              />
+            </div>
+          ))}
         </div>
+      )}
+      <div>
+        <Notice />
+        <Banner />
+        {!flag && <Survey />}
+        <Category>
+          <Title>💬 커뮤니티</Title>
+          <AllBtn onClick={handleAllBtn}>전체보기</AllBtn>
+        </Category>
+        <Board />
+        <Category>
+          <Title>🏁 오늘의 경기</Title>
+          <AllBtn onClick={goMatchSchedule}>전체보기</AllBtn>
+        </Category>
+        <TodayMatch />
+        <Hotclip />
+        <Category>
+          <Title>🎯 노스트라다무스 랭킹</Title>
+        </Category>
+        <NostraContent>
+          경기 결과 예측에 성공하여 순위에 올라보세요!
+        </NostraContent>
+        <Nostradamus />
+        {flag && <Survey />}
+        <Footer />
+        {nickname === null && <EditNicknameModal type="signUp" />}
       </div>
+    </div>
   );
 }
 
