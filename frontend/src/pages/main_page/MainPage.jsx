@@ -90,7 +90,7 @@ function MainPage() {
       getEventList(
         userId,
         (data) => {
-          setEvents(data);
+          setEvents(data.data);
           console.log(data);
         },
         (err) => {
