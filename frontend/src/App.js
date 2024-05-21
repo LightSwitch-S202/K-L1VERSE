@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 import React from "react";
 
@@ -38,57 +38,73 @@ import MatchChattingPage from "./pages/match_page/MatchChattingPage";
 import SettingPage from "./pages/my_page/SettingPage";
 
 import TeamInfoPage from "./pages/teamPage/TeamInfoPage";
+import {LSClient} from "lightswitch-js-sdk";
 
 function App() {
-  return (
-    <div className="App">
-      <SocketProvider>
-        {/* <BrowserRouter> */}
-        <Routes>
-          <Route path="/login" element={<LoginPage />} />
+    let lightswitch = LSClient.getInstance();
+    lightswitch
+        .init({
+            sdkKey: "0ca69b1cfd754a1fb78191c941c5c76e",
+            onFlagChanged: () => {
+            },
+            endpoint: "https://lightswitch.kr",
+        })
+        .then(() => {
+            console.log("lightswitch init 성공")
+        })
+        .catch(() => {
+            console.log("lightswitch init 실패")
+        })
 
-          <Route path="/logout" element={<LogoutPage />} />
+    return (
+        <div className="App">
+            <SocketProvider>
+                {/* <BrowserRouter> */}
+                <Routes>
+                    <Route path="/login" element={<LoginPage/>}/>
 
-          <Route path="/KakaoAuth" element={<KaKaoRedirection />} />
-          <Route path="/GoogleAuth" element={<GoogleRedirection />} />
-          <Route path="/NaverAuth" element={<NaverRedirection />} />
+                    <Route path="/logout" element={<LogoutPage/>}/>
 
-          <Route path="/" element={<Navbar />}>
-            <Route index element={<MainPage />} />
+                    <Route path="/KakaoAuth" element={<KaKaoRedirection/>}/>
+                    <Route path="/GoogleAuth" element={<GoogleRedirection/>}/>
+                    <Route path="/NaverAuth" element={<NaverRedirection/>}/>
 
-            <Route path="/notification" element={<NotificationPage />} />
+                    <Route path="/" element={<Navbar/>}>
+                        <Route index element={<MainPage/>}/>
 
-            <Route path="/survey" element={<StartPage />} />
-            <Route path="/question/:questionNum" element={<QuestionPage />} />
-            <Route path="/result" element={<ResultPage />} />
-            <Route path="/kakao" element={<KakaoPage />} />
+                        <Route path="/notification" element={<NotificationPage/>}/>
 
-            <Route path="/waggle" element={<WaggleListPage />} />
-            <Route path="/waggle/:boardId" element={<WaggleDetailPage />} />
-            <Route path="/waggleRegist" element={<WaggleRegistPage />} />
+                        <Route path="/survey" element={<StartPage/>}/>
+                        <Route path="/question/:questionNum" element={<QuestionPage/>}/>
+                        <Route path="/result" element={<ResultPage/>}/>
+                        <Route path="/kakao" element={<KakaoPage/>}/>
 
-            <Route path="/mate" element={<MateListPage />} />
-            <Route path="/mate/:boardId" element={<MateDetailPage />} />
-            <Route path="/mateRegist" element={<MateRegistPage />} />
+                        <Route path="/waggle" element={<WaggleListPage/>}/>
+                        <Route path="/waggle/:boardId" element={<WaggleDetailPage/>}/>
+                        <Route path="/waggleRegist" element={<WaggleRegistPage/>}/>
 
-            <Route path="/product" element={<ProductListPage />} />
-            <Route path="/product/:boardId" element={<ProductDetailPage />} />
-            <Route path="/productRegist" element={<ProductRegistPage />} />
+                        <Route path="/mate" element={<MateListPage/>}/>
+                        <Route path="/mate/:boardId" element={<MateDetailPage/>}/>
+                        <Route path="/mateRegist" element={<MateRegistPage/>}/>
 
-            <Route path="/schedule" element={<MatchSchedulePage />} />
-            <Route path="/match/:matchId" element={<MatchDetailPage />} />
-            <Route path="/chat/:matchId" element={<MatchChattingPage />} />
-            <Route path="/team" element={<TeamInfoPage />} />
+                        <Route path="/product" element={<ProductListPage/>}/>
+                        <Route path="/product/:boardId" element={<ProductDetailPage/>}/>
+                        <Route path="/productRegist" element={<ProductRegistPage/>}/>
 
-            <Route path="/mypage" element={<MyPage />} />
-            <Route path="/badge" element={<Badge />} />
-            <Route path="/setting" element={<SettingPage />} />
-          </Route>
-        </Routes>
-        {/* </BrowserRouter> */}
-      </SocketProvider>
-    </div>
-  );
+                        <Route path="/schedule" element={<MatchSchedulePage/>}/>
+                        <Route path="/match/:matchId" element={<MatchDetailPage/>}/>
+                        <Route path="/chat/:matchId" element={<MatchChattingPage/>}/>
+                        <Route path="/team" element={<TeamInfoPage/>}/>
+
+                        <Route path="/mypage" element={<MyPage/>}/>
+                        <Route path="/badge" element={<Badge/>}/>
+                        <Route path="/setting" element={<SettingPage/>}/>
+                    </Route>
+                </Routes>
+                {/* </BrowserRouter> */}
+            </SocketProvider>
+        </div>
+    );
 }
 
 export default App;
