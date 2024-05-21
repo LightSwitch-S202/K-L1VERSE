@@ -38,24 +38,8 @@ import MatchChattingPage from "./pages/match_page/MatchChattingPage";
 import SettingPage from "./pages/my_page/SettingPage";
 
 import TeamInfoPage from "./pages/teamPage/TeamInfoPage";
-import {LSClient} from "lightswitch-js-sdk";
 
 function App() {
-    let lightswitch = LSClient.getInstance();
-    lightswitch
-        .init({
-            sdkKey: "0ca69b1cfd754a1fb78191c941c5c76e",
-            onFlagChanged: () => {
-            },
-            endpoint: "https://lightswitch.kr",
-        })
-        .then(() => {
-            console.log("lightswitch init 성공")
-        })
-        .catch(() => {
-            console.log("lightswitch init 실패")
-        })
-
     return (
         <div className="App">
             <SocketProvider>
