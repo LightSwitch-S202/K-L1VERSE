@@ -128,7 +128,7 @@ function MainPage() {
                     {events.map(event => (
                         <div key={event.name} style={{position: "relative"}}>
                             <img
-                                src={`../images/event_images/event${event.name}.png`}
+                                src={`https://dear103.store/event_images/event${event.name}.png`}
                                 alt={event.description}
                                 width={150}
                             />
