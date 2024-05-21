@@ -100,10 +100,24 @@ function MainPage() {
                 },
             );
 
-            const lightswitch = LSClient.getInstance()
-            setFlag(
-                lightswitch.getBooleanFlag("자바스크립트 배너 테스트", user, false),
-            );
+            let lightswitch = LSClient.getInstance();
+            lightswitch
+                .init({
+                    sdkKey: "0ca69b1cfd754a1fb78191c941c5c76e",
+                    onFlagChanged: () => {
+                    },
+                    endpoint: "https://lightswitch.kr",
+                })
+                .then(() => {
+                    console.log("lightswitch init 성공")
+
+                    setFlag(
+                        lightswitch.getBooleanFlag("자바스크립트 배너 테스트", user, false),
+                    );
+                })
+                .catch(() => {
+                    console.log("lightswitch init 실패")
+                })
 
             return () => ChannelIO("hideChannelButton");
         }
