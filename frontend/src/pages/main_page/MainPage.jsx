@@ -106,7 +106,7 @@ function MainPage() {
                     sdkKey: "0ca69b1cfd754a1fb78191c941c5c76e",
                     onFlagChanged: () => {
                     },
-                    endpoint: "https://lightswitch.kr",
+                    endpoint: "https://dear103.store/lightswitch",
                 })
                 .then(() => {
                     console.log("lightswitch init 성공")
