@@ -103,7 +103,7 @@ function MainPage() {
             let lightswitch = LSClient.getInstance();
             lightswitch
                 .init({
-                    sdkKey: "0ca69b1cfd754a1fb78191c941c5c76e",
+                    sdkKey: "7185e01664d74bfab6f42760aa33baf7",
                     onFlagChanged: () => {
                     },
                     endpoint: "https://dear103.store/lightswitch",
